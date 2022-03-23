@@ -186,7 +186,7 @@ export default {
         if (Object.keys(pokemonInfos.value).length === 0) {
           getPokemonInfos(pokeUrl + `${1}`);
         }
-      }, 500);
+      }, 1000);
     });
 
     return {
