@@ -1,16 +1,16 @@
 <template>
   <section class="main-container">
-    <div v-if="loadingStatus" class="d-flex justify-center align-center">
+    <div v-if="loadingStatus" class="loading-container">
       <img
         src="https://i.imgur.com/aMz1Qtu.gif"
-        width="480"
-        height="360.000"
+        :width="$vuetify.breakpoint.smAndDown ? 280 : 480"
+        :height="$vuetify.breakpoint.smAndDown ? 220 : 360"
         frameBorder="0"
         allowFullScreen
       />
     </div>
     <div v-else class="d-flex flex-column align-center">
-      <div class="my-10" style="background-color: white; width: 500px">
+      <div class="search-bar my-10">
         <v-text-field
           label="Search Pokémon"
           solo
@@ -70,7 +70,6 @@ export default {
   );
 
   background-size: 100%;
-  background-repeat: repeat;
   height: 100% !important;
 }
 .pokemon-container {
@@ -90,5 +89,26 @@ export default {
 .pokemon-name {
   font-family: "Press Start 2P", cursive;
   font-size: 10px;
+}
+.search-bar {
+  background-color: white;
+  width: 500px;
+}
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 1024px) {
+  .pokemon-container {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  .search-bar {
+    width: 80%;
+  }
+  .loading-container {
+    align-items: flex-start;
+  }
 }
 </style>

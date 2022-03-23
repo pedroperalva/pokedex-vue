@@ -22,4 +22,12 @@
   );
   gap: 20px;
 }
+@media screen and (max-width: 1024px) {
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+    padding: 30px;
+  }
+}
 </style>

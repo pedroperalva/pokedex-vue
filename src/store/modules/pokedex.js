@@ -4,6 +4,7 @@ const state = {
   pokemonList: [],
   loadingStatus: true,
 };
+
 const mutations = {
   setPokemonList(state, payload) {
     state.pokemonList = [];
@@ -24,21 +25,26 @@ const mutations = {
     state.loadingStatus = true;
   },
 };
+
 const actions = {
   async getPokemonList({ commit }, values) {
     commit("changeLoadingToTrue");
 
-    const resp = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?offset=${values.offset}&limit=${values.limit}`
-    );
+    try {
+      const resp = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon?offset=${values.offset}&limit=${values.limit}`
+      );
 
-    const data = {
-      list: resp.data.results,
-      offset: parseInt(values.offset),
-    };
+      const data = {
+        list: resp.data.results,
+        offset: parseInt(values.offset),
+      };
 
-    commit("setPokemonList", data);
-    commit("changeLoadingToFalse");
+      commit("setPokemonList", data);
+      commit("changeLoadingToFalse");
+    } catch (error) {
+      alert(error, "Recarregue a página");
+    }
   },
 };
 

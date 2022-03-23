@@ -3,7 +3,9 @@ import axios from "axios";
 const state = {
   pokemonInfos: {},
   loadingStatus: true,
+  errorMessage: "",
 };
+
 const mutations = {
   setPokemonInfo(state, payload) {
     state.pokemonInfos = payload;
@@ -17,19 +19,29 @@ const mutations = {
   resetPokemonInfos(state) {
     state.pokemonInfos = {};
   },
+  setErrorMessage(state, error) {
+    state.errorMessage = error;
+  },
 };
+
 const actions = {
   async getPokemonInfos({ commit, state }, pokeUrl) {
     if (Object.keys(state.pokemonInfos).length === 0) {
       commit("changeLoadingToTrue");
     }
 
-    const resp = await axios.get(pokeUrl);
+    try {
+      const resp = await axios.get(pokeUrl);
 
-    commit("setPokemonInfo", resp.data);
-    commit("changeLoadingToFalse");
+      commit("setPokemonInfo", resp.data);
+      commit("setErrorMessage", "");
+      commit("changeLoadingToFalse");
+    } catch (error) {
+      commit("setErrorMessage", error);
+    }
   },
 };
+
 const getters = {
   backgroundColors(state) {
     const types = state.pokemonInfos.types;
