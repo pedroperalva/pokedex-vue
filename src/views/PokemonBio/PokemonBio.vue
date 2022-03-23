@@ -3,7 +3,7 @@
     <div
       v-if="loadingStatus"
       class="d-flex justify-center align-center"
-      style="height: 100%"
+      style="height: 100%; background-color: yellow"
     >
       <img
         src="https://i.imgur.com/aMz1Qtu.gif"
@@ -146,9 +146,11 @@ export default {
     };
 
     onMounted(() => {
-      if (Object.keys(pokemonInfos.value).length === 0) {
-        getPokemonInfos(pokeUrl + `${1}`);
-      }
+      setTimeout(() => {
+        if (Object.keys(pokemonInfos.value).length === 0) {
+          getPokemonInfos(pokeUrl + `${1}`);
+        }
+      }, 500);
     });
 
     return {

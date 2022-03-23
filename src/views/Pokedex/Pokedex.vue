@@ -77,8 +77,8 @@ export default {
         limit: "107",
       },
       gen5: {
-        offset: "493",
-        limit: "156",
+        offset: "494",
+        limit: "155",
       },
       gen6: {
         offset: "649",
