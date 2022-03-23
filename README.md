@@ -10,15 +10,14 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Libs
 ```
-npm run build
-```
+vueX
+vue-composition-api
+vue-composition-helpers
+vuetify
+axios
+https://pokeapi.co/
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
